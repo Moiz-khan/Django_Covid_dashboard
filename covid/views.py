@@ -1,8 +1,9 @@
 from django.shortcuts import HttpResponse, render
+from django.conf import settings
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-
+import os
 # For models
 #Getting Random Forest class from sklearn.ensemble
 from sklearn.ensemble import RandomForestRegressor
@@ -18,7 +19,10 @@ from sklearn.metrics import mean_absolute_error
 
 
 
-df = pd.read_csv('E:\Django\mldeploy\deploy\model\PKCOVID-19.csv')
+
+file_path = os.path.join(settings.BASE_DIR, "covid", "PKCOVID-19.csv")
+
+df = pd.read_csv(file_path)
 
 # Create your views here.
 def index(request):
