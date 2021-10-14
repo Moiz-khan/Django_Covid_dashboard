@@ -10,11 +10,11 @@
     height: 450px;
     width: 1350px;
     /* box-shadow: 1px 1px 17px #ccc; */
-    background-color: rgba(7, 7, 7, 0.911);
+    background-color: rgba(121, 121, 121, 0.534);
 }
 
 .card1 {
-    border-radius: 20%;
+    border-radius: 6px;
     width: 250px;
     height: 250px;
     margin-top: 7%;
@@ -31,7 +31,7 @@
     margin-left: 5px;
     /* margin-right: 30px; */
     background-color: lightpink;
-    border-radius: 20%;
+    border-radius: 6px;
     border-bottom: 3px solid #009639;
 }
 
@@ -41,7 +41,7 @@
     margin-top: 7%;
     margin-left: 5px;
     background-color: lightgreen;
-    border-radius: 20%;
+    border-radius: 6px;
     color: green;
     border-bottom: 3px solid #009639;
 }
