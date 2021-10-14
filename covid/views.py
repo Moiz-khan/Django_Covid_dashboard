@@ -20,30 +20,31 @@ from sklearn.metrics import mean_absolute_error
 
 
 
-file_path = os.path.join(settings.BASE_DIR, "covid", "PKCOVID-19.csv")
 
-df = pd.read_csv(file_path)
 
 # Create your views here.
 def index(request):
-    plot_pie_chart()
+
+    file_path = os.path.join(settings.BASE_DIR, "covid", "PKCOVID-19.csv")
+    df = pd.read_csv(file_path)
+    plot_pie_chart(df)
     cities = df.Province.unique()
     print(cities)
-    params = visualize()
+    params = visualize(df)
     # print(params)
-    sindh_cases()
+    sindh_cases(df)
     
     
-    report_cases()
-    params_prov = province_cases()
-    models()
+    report_cases(df)
+    params_prov = province_cases(df)
+    models(df)
 
     data = {'params': params, 'prov_info': params_prov}
     print(data)
     return render(request, 'model/index.html', data)
 
 
-def visualize():
+def visualize(df):
     cases = int(df.Cases.sum())
     deaths = int(df.Deaths.sum())
     recovd = int(df.Recovered.sum())
@@ -61,7 +62,7 @@ def absolute_value(val):
     a  = np.round(val/100.*sizes.sum(), 0)
     return int(a)
 
-def plot_pie_chart():
+def plot_pie_chart(df):
     # Creating dataset
     cities = df.Province.unique()
     counts = []
@@ -84,7 +85,7 @@ def plot_pie_chart():
     # plt.savefig('pie_chart.png',dpi=100)
 
 
-def sindh_cases():
+def sindh_cases(df):
     cities = df.Province.unique()
     print(cities)
 
@@ -103,7 +104,7 @@ def sindh_cases():
 
 
 
-def province_cases():
+def province_cases(df):
     case = []
     recov = []
     death = []
@@ -133,7 +134,7 @@ def province_cases():
     return case_info
 
 
-def report_cases():
+def report_cases(df):
     Dates = df['Date']
     Cases = df['Cases']
     
@@ -146,7 +147,7 @@ def report_cases():
     # Show Plot
     
 
-def models():
+def models(df):
 #characteristics/features of a house used to train model
     df.dropna(inplace=True)
     features = ['Cases', 'Recovered']
